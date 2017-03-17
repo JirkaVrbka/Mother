@@ -1,0 +1,4 @@
+// <- toto znamena komentar, toto je ignorovano
+//"cas zobrazeni ve tvaru= hodiny:minuty:sekundy";"zprava pro zobrazeni";"trvani zobrazeni v sekundach"
+"0:0:5";"UPOZORNĚNÍ! KONTROLNÍ SYSTÉM LODI DETEKOVAL PROBLÉM V ZAPÍNÁNÍ VENTILAČNÍHO SYSTÉMU SEKTORU VKSP1. SYSTÉM VYZÝVÁ LIDSKOU POSÁDKOU, ABY PROBLÉM ODSTRANILA DO 20 -TI MINUT OD PRVNÍHO UPOZORNĚNÍ. DELŠÍ DOBA PORUCHY MŮŽE ZPŮSOBIT OTRAVU ŽIVÝCH ORGANIZMŮ NA PALUBĚ.";"3"
+"0:0:12";"Hlaska cislo \n 2";"5"
