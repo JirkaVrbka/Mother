@@ -10,7 +10,7 @@ package matka;
  * @author Jiri Vrbka
  */
 public enum Paths {
-    VIDEO_MATRIX_CODE("./Nastavitelne veci/Matrix Raining Code.mp4"),
+    VIDEO_BACKGROUND("./Nastavitelne veci/video_pozadi.mp4"),
     CSS_FILE("src/matka/css/styles.css"),
     TXT_UPOZORNENI("./Nastavitelne veci/upozorneni.txt");
     

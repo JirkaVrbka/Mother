@@ -47,7 +47,7 @@ import javafx.util.Duration;
  */
 public class Matka extends Application {
     
-    private static final String MATRIX_VIDEO = Paths.VIDEO_MATRIX_CODE.getPath();
+    private static final String MATRIX_VIDEO = Paths.VIDEO_BACKGROUND.getPath();
     
     
     @Override
