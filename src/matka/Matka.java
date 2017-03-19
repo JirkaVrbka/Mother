@@ -3,30 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package matka;
 
 import java.io.File;
-import static java.lang.Character.toLowerCase;
 import java.net.MalformedURLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
@@ -38,26 +31,37 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
-//TODO: predelat cesty k souborum na relativni
-//TODO: kontrolovat existenci souboru
 /**
- *
+ * 
  * @author Jiri Vrbka
  */
 public class Matka extends Application {
     
-    private static final String MATRIX_VIDEO = Paths.VIDEO_BACKGROUND.getPath();
-    
-    
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws MalformedURLException {
+//        Button btn = new Button();
+//        btn.setText("Say 'Hello World'");
+//        btn.setOnAction(new EventHandler<ActionEvent>() {
+//            
+//            @Override
+//            public void handle(ActionEvent event) {
+//                System.out.println("Hello World!");
+//            }
+//        });
+//        
+//        StackPane root = new StackPane();
+//        root.getChildren().add(btn);
+//        
+//        Scene scene = new Scene(root, 300, 250);
+//        
+//        primaryStage.setTitle("Hello World!");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
         MediaView viewer = prepareMediaView();
         Label labelText = new Label("");
         
         
         labelText.setFont(new Font("Courier", 45));
-       // labelText.setTextFill(Color.RED);
         labelText.setAlignment(Pos.CENTER);
         labelText.setMaxWidth(Double.MAX_VALUE);
         labelText.setVisible(true);
@@ -82,17 +86,24 @@ public class Matka extends Application {
         stage.show();   
     
     
-    
     }
-    
-    private void addCSS(Scene scene){
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+     private void addCSS(Scene scene){
         File f = new File(Paths.CSS_FILE.getPath());
         try {
             scene.getStylesheets().setAll(f.toURI().toURL().toExternalForm());
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Matka.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
     
     private void addLineTransitions(Label labelText){
         HandlerFile handlerFile = new HandlerFile();
@@ -195,7 +206,7 @@ public class Matka extends Application {
     }
     
     private MediaView prepareMediaView() throws MalformedURLException{
-        File f = new File(MATRIX_VIDEO);
+        File f = new File(Paths.VIDEO_BACKGROUND.getPath());
 
 
         //Converts media to string URL
@@ -217,11 +228,6 @@ public class Matka extends Application {
         return viewer;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
     
 }
+
