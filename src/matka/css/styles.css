@@ -8,6 +8,16 @@ and open the template in the editor.
     Author     : Jiri Vrbka
 */
 
+
 .label{
+    -fx-font-size: 30pt;
     -fx-text-fill: red;
+    -fx-alignment: CENTER;
+    -fx-padding: 20;
+    -fx-wrap-text: true;
+    -fx-wrap-text: true;
+    -fx-font-family: 'monospace';
+    -fx-text-alignment: justify;
+    
+    
 }

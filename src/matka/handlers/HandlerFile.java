@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 
-package matka;
+package matka.handlers;
 
+import matka.enums.Paths;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import matka.SingleLine;
 
 /**
  * 
@@ -21,16 +23,8 @@ public final class HandlerFile {
 
     private static final String PATH_TO_FILE = Paths.TXT_UPOZORNENI.getPath();
     private static File file;
-    private List<SingleLine> lines;
     
     public HandlerFile(){
-        
-        
-        lines = loadFile();
-    }
-    
-    public List<SingleLine> getLines(){
-        return lines;
     }
     
     public List<SingleLine> loadFile(){
