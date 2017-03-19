@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 
-package matka;
+package matka.desing;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,32 +16,34 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Screen;
 import javafx.util.Duration;
-import matka.enums.Paths;
+import matka.SingleLine;
 import matka.handlers.HandlerFile;
 
 /**
  * 
  * @author Jiri Vrbka
  */
-public class HorDesign {
+public class HorDesign extends ADesign implements IDesign{
 
-    private MediaView viewer;
-    private Label labelText;
+    private MediaView viewer = prepareMediaView();
+    private Label labelText = new Label("");
     private List<PauseTransition> transitions;
     
     
     
-    public void createDesign(StackPane root) throws MalformedURLException{
-        viewer = prepareMediaView();
-        labelText = new Label("");
-        labelText.getStyleClass().add("label");
+    @Override
+    public void createParts(StackPane root){
+        
+        labelText.getStyleClass().add("label");        
         
         root.getChildren().add(viewer);
         root.getChildren().add(labelText);
@@ -53,23 +54,21 @@ public class HorDesign {
         DoubleProperty height = viewer.fitHeightProperty();
         width.bind(Bindings.selectDouble(viewer.sceneProperty(), "width"));
         height.bind(Bindings.selectDouble(viewer.sceneProperty(), "height"));
+        
+        root.setAlignment(labelText, Pos.CENTER);
     }
     
     
-    public void addCSS(Scene scene){
-        File f = new File(Paths.CSS_FILE.getPath());
-        try {
-            scene.getStylesheets().setAll(f.toURI().toURL().toExternalForm());
-        } catch (MalformedURLException ex) {
-        }
-    }
-    
+    @Override
     public void start(){
         transitions.forEach(t -> t.play());
+        viewer.getMediaPlayer().play();
     }
     
+    @Override
     public void stop(){
         transitions.forEach(t -> t.stop());
+        viewer.getMediaPlayer().pause();
     }
     
     
@@ -114,27 +113,24 @@ public class HorDesign {
     }
     
     
-    
-    
-    private MediaView prepareMediaView() throws MalformedURLException{
-        File f = new File(Paths.VIDEO_BACKGROUND.getPath());
-
-
-        //Converts media to string URL
-        Media media = new Media(f.toURI().toURL().toString());
-        MediaPlayer player = new MediaPlayer(media);
-        MediaView viewer = new MediaView(player);
-
-        //change width and height to fit video
-        
-        viewer.setPreserveRatio(true);
-        player.setCycleCount(MediaPlayer.INDEFINITE);
-
-        //starts playing
-        player.play();
-        
-        return viewer;
+    @Override
+    public void show() {
+        labelText.setVisible(true);
+        viewer.setVisible(true);
     }
+
+    @Override
+    public void hide() {
+        labelText.setVisible(false);
+        viewer.setVisible(false);
+    }
+
+    @Override
+    public void setProperties(Scene scene) {
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        labelText.setMaxWidth(screenBounds.getWidth());
+    }
+
     
 }
 

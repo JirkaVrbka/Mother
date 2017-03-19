@@ -6,6 +6,7 @@
 
 package matka;
 
+import matka.desing.HorDesign;
 import matka.handlers.HandlerFile;
 import matka.enums.Paths;
 import java.io.File;
@@ -21,8 +22,10 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -30,8 +33,11 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import matka.desing.IDesign;
+import matka.desing.JirkaDesign;
 
 /**
  * 
@@ -43,15 +49,18 @@ public class Matka extends Application {
     public void start(Stage stage) throws MalformedURLException {
         
         StackPane root = new StackPane();
-        HorDesign hd = new HorDesign();
+        IDesign desing = new JirkaDesign();
         
-        hd.createDesign(root);
+        desing.createParts(root);
+        
         
         //set the Scene
         Scene scenes = new Scene(root, 500, 500, Color.BLACK);
         
-        hd.addCSS(scenes);
+        desing.addCSS(scenes);
         
+        desing.show();
+        desing.start();
 //        DoubleProperty width = viewer.fitWidthProperty();
 //        DoubleProperty height = viewer.fitHeightProperty();
 //        width.bind(Bindings.selectDouble(viewer.sceneProperty(), "width"));
@@ -61,10 +70,14 @@ public class Matka extends Application {
         stage.setTitle("Matka");
         stage.setFullScreen(true);
         
-        System.out.println(stage.getHeight());
+        
         
         stage.show();   
-    
+        
+        System.out.println(stage.getHeight());
+        desing.setProperties(scenes);
+        
+        
     
     }
 
@@ -76,71 +89,6 @@ public class Matka extends Application {
     }
 
      
-    
-    
-    
-    private final void writeTextMatriX(Label label, String text){
-        
-        final char[] charText = text.toCharArray();
-        final int o = 1;
-        final Label labelToWrite = label;
-//        
-//        for(int i = 0; i < charText.length; i++){
-//            final char c = charText[i];
-//            //Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> writeTextMatriXEvent(labelToWrite ,c)));
-//            PauseTransition delay = new PauseTransition(Duration.seconds(1));
-//            delay.setOnFinished( event -> writeTextMatriXEvent(labelToWrite ,c) );
-//            delay.play();
-//        }
-//        
-        final IntegerProperty i = new SimpleIntegerProperty(0);
-        Timeline timeline = new Timeline(
-            new KeyFrame(
-                Duration.seconds(2),
-                event -> {
-                    
-                    writeTextMatriXEvent(label, charText[i.getValue()]);
-                    
-                    i.set(i.get() + 1);
-                    
-                    //label.setText("Elapsed time: " + i.get() + " seconds");
-                } 
-            )
-        );
-        timeline.setCycleCount(charText.length);
-        timeline.play();
-
-        
-        
-    }
-    
-    private void writeTextMatriXEvent(Label label,char finalLetter){
-        String text = label.getText();
-        
-        final IntegerProperty i = new SimpleIntegerProperty(0);
-        
-        Timeline timeline = new Timeline(
-            new KeyFrame(
-                Duration.millis(50) ,
-                event -> {
-                    char a = (char) ('A' + (char)i.getValue().intValue());
-                    label.setText(text + a);
-                    
-                    i.set(i.get() + 1);
-                    
-                    //label.setText("Elapsed time: " + i.get() + " seconds");
-                } 
-            )
-        );
-        timeline.setCycleCount(finalLetter - 'A');
-        timeline.play();
-        
-        
-        if(finalLetter == ' '){
-            label.setText(text + finalLetter);
-        }
-        
-    }
     
     
 

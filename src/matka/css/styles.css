@@ -12,12 +12,43 @@ and open the template in the editor.
 .label{
     -fx-font-size: 30pt;
     -fx-text-fill: red;
-    -fx-alignment: CENTER;
-    -fx-padding: 20;
-    -fx-wrap-text: true;
+    
+    -fx-padding: 10% ;
     -fx-wrap-text: true;
     -fx-font-family: 'monospace';
     -fx-text-alignment: justify;
     
     
+}
+
+
+.labelLvl{
+    -fx-font-size: 40px;
+    -fx-text-fill: red;
+    -fx-alignment: BOTTOM_LEFT;
+    -fx-padding: 20;
+    -fx-wrap-text: true;
+    -fx-font-family: 'monospace';
+    -fx-text-alignment: justify;
+   
+}
+
+.labelLvl1{
+    
+}
+
+.labelLvl2{
+    -fx-padding: 0 0 70 20;
+}
+
+.labelLvl3{
+    -fx-padding: 0 0 120 20;
+}
+
+.labelLvl4{
+    -fx-padding: 0 0 170 20;
+}
+
+.labelLvl5{
+    -fx-padding: 0 0 220 20;
 }
