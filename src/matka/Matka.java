@@ -5,8 +5,8 @@
  */
 package matka;
 
-import matka.handlers.HandlerFile;
 import java.io.File;
+import static java.lang.Character.toLowerCase;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,8 +19,14 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
@@ -51,6 +57,7 @@ public class Matka extends Application {
         
         
         labelText.setFont(new Font("Courier", 45));
+       // labelText.setTextFill(Color.RED);
         labelText.setAlignment(Pos.CENTER);
         labelText.setMaxWidth(Double.MAX_VALUE);
         labelText.setVisible(true);
@@ -86,8 +93,6 @@ public class Matka extends Application {
             Logger.getLogger(Matka.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
     
     private void addLineTransitions(Label labelText){
         HandlerFile handlerFile = new HandlerFile();
